@@ -1,0 +1,39 @@
+
+@keyframes slide {
+    0% {
+      transform: translateX(-100%); 
+    }
+    100% {
+      transform: translateX(0); 
+    }
+  }
+  
+
+  .sliding-text {
+    animation: slide 1s ease-in-out; 
+  }
+
+
+@keyframes jumpFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    50% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(50%); 
+    }
+  }
+  
+  
+  .jumping-text {
+    animation: jumpFromTop 1s ease-in-out forwards;
+    position: fixed; 
+    bottom:50%; 
+    left: 45%; 
+    transform: translate(-50%, -50%); 
+  }
+  
+  
+  

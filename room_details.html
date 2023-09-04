@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Room Details</title>
+
+</head>
+
+<body style="background-image: url('newimg.jpg');">
+    <h1 style="text-align: center;margin-top: 60px; color: #B9F884; font-size: 50px;">Room Details</h1>
+
+    <div id="room-details"
+        style="display: flex; align-items: center; justify-content: center; height: 70vh; flex-direction: column; color: white; font-weight: bold; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color:rgb(250, 144, 209); font-size: 25px;"
+        class="jumping-text">
+
+    </div>
+
+    <script>
+
+        function getRoomIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+
+        function displayRoomDetails() {
+            const roomId = getRoomIdFromUrl();
+            const storedRooms = JSON.parse(localStorage.getItem('rooms'));
+
+            if (storedRooms && Array.isArray(storedRooms)) {
+
+                const room = storedRooms.find(room => room.id == roomId);
+
+                if (room) {
+                    const roomDetailsDiv = document.getElementById('room-details');
+
+
+                    roomDetailsDiv.innerHTML = `
+                        <h2>${room.name}</h2>
+                        <p>ID: ${room.id}</p>
+                        <p>Availability: ${room.availability}</p>
+                        <p>Time Slot: ${room.Timeslot}</p>
+                        <!-- Add more details here as needed -->
+                    `;
+                } else {
+
+                    const roomDetailsDiv = document.getElementById('room-details');
+                    roomDetailsDiv.innerHTML = '<p>Room not found.</p>';
+                }
+            } else {
+
+                const roomDetailsDiv = document.getElementById('room-details');
+                roomDetailsDiv.innerHTML = '<p>No room details available.</p>';
+            }
+        }
+
+
+        window.onload = displayRoomDetails;
+    </script>
+</body>
+
+</html>
